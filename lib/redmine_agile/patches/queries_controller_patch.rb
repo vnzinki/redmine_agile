@@ -21,11 +21,7 @@ module RedmineAgile
   module Patches
     module QueriesControllerPatch
       def self.included(base)
-        base.send(:include, InstanceMethods)
-        base.class_eval do
-          alias_method :query_class_without_agile, :query_class
-          alias_method :query_class, :query_class_with_agile
-        end
+        base.prepend(InstanceMethods)
       end
 
       module InstanceMethods
